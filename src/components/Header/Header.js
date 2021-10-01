@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 import "./header.css";
 
@@ -33,31 +34,31 @@ const Header = () => {
               >
                 <ul className="navbar-nav pe-5 mb-2 mb-lg-0 mx-auto">
                   <li className="nav-item">
-                    <a
+                    <Link
                       className="nav-link active"
                       aria-current="page"
-                      href="/shop"
+                      to="/shop"
                     >
                       Shop
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a
+                    <Link
                       className="nav-link active"
                       aria-current="page"
-                      href="/order_review"
+                      to="/order_review"
                     >
                       Order Review
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a
+                    <Link
                       className="nav-link active"
                       aria-current="page"
-                      href="/manage_inventory"
+                      to="/inventory"
                     >
                       Manage Inventory
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

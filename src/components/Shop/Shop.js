@@ -3,6 +3,7 @@ import { useState } from "react";
 import { addToDb, getStoredCart } from "../../utilities/fakedb";
 import Carts from "../Cart/Carts";
 import Product from "../Product/Product";
+import { Link } from "react-router-dom";
 
 const Shop = () => {
   const [Products, setProducts] = useState([]);
@@ -19,8 +20,19 @@ const Shop = () => {
   }, []);
 
   const handleAddToCart = (product) => {
-    const newCart = [...Cart, product];
+    const exists = Cart.find((pd) => pd.key === product.key);
+    let newCart = [];
+    if (exists) {
+      const rest = Cart.filter((pd) => pd.key !== product.key);
+      exists.quantity = exists.quantity + 1;
+      newCart = [...rest, product];
+    } else {
+      product.quantity = 1;
+      newCart = [...Cart, product];
+    }
+
     setCart(newCart);
+
     // save to local storage
 
     console.log(product.key);
@@ -80,7 +92,15 @@ const Shop = () => {
             ))}
           </div>
           <div className="col-md-3 mt-4">
-            <Carts cart={Cart}></Carts>
+            <Carts cart={Cart}>
+              <div className="mx-2 mt-2">
+                <Link to="/order_review">
+                  <button className="btn btn-warning mx-5 ">
+                    Review Order
+                  </button>
+                </Link>
+              </div>
+            </Carts>
           </div>
         </div>
       </div>

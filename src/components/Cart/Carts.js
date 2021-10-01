@@ -23,14 +23,15 @@ const Carts = (props) => {
           <p className="fw-bold p-2 text-center">
             Item In Cart {totalQuantity}
           </p>
-          <li className="list-group-item">Total Price: {total.toFixed(2)}</li>
-          <li className="list-group-item">Shipping: {shipping}</li>
-          <li className="list-group-item">Tax: {tax.toFixed(2)}</li>
+          <li className="list-group-item">Total Price: {total.toFixed(2)} $</li>
+          <li className="list-group-item">Shipping: {shipping} $</li>
+          <li className="list-group-item">Tax: {tax.toFixed(2)} $</li>
           <li className="list-group-item">
-            Grand Total: {grandTotal.toFixed(2)}
+            Grand Total: {grandTotal.toFixed(2)} $
           </li>
         </ul>
       </div>
+      {props.children}
     </div>
   );
 };
