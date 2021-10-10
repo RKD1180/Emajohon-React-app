@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 import "./header.css";
+import useAuth from "./../../hooks/useAuth";
 
 const Header = () => {
+  const { user, logOut } = useAuth();
   return (
     <div className="header">
       <img className="logo" src={logo} alt="" />
@@ -61,6 +63,35 @@ const Header = () => {
                     </Link>
                   </li>
                 </ul>
+                {user.email ? (
+                  <div>
+                    <span className="text-white me-3 mt-2">
+                      {user.displayName}
+                    </span>
+                    <button
+                      onClick={logOut}
+                      className="btn btn-outline-primary"
+                    >
+                      Log Out
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    <Link to="/login">
+                      <button
+                        class="btn btn-outline-success me-2"
+                        type="submit"
+                      >
+                        Login
+                      </button>
+                    </Link>
+                    <Link to="/registration">
+                      <button class="btn btn-outline-warning" type="submit">
+                        Sign Up
+                      </button>
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </nav>
